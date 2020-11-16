@@ -47,9 +47,9 @@ public class App {
         String editDate;
         int index;
         try{
-            if (tasklist.runningT==0)
+            if (tasklist.runningT<=0)
             {
-                throw new NoSuchFieldException();
+                throw new NoSuchFieldException("WARNING Cannont edit");
             }
 
             System.out.println("Current Tasks");
@@ -98,9 +98,9 @@ public class App {
     private static void deleteTask(TaskList tasklist)
     {
         try{
-            if(tasklist.runningT ==0)
+            if(tasklist.runningT <=0)
             {
-                throw new NoSuchFieldException();
+                throw new NoSuchFieldException("WARNING: Cannot delete");
             }
             System.out.println("Current Tasks");
             System.out.println("-------------------");
@@ -141,10 +141,9 @@ public class App {
     private static void TaskComplete(TaskList tasks)
     {
         try{
-
-            if(tasks.runningT==0)
+            if(tasks.runningT<=0)
             {
-                throw new NoSuchFieldException();
+                throw new NoSuchFieldException("WARNING: Cannot complete action");
             }
 
             System.out.println("Uncompleted Tasks");
@@ -156,6 +155,10 @@ public class App {
 
             input.nextLine();
             tasks.marksTask(index);
+            if(tasks.runningT==0)
+            {
+                throw new NoSuchFieldException("WARNING: Cannot complete action");
+            }
         }
         catch(InputMismatchException exception)
         {
@@ -193,7 +196,8 @@ public class App {
     private static void markIncomplete(TaskList tasks)
     {
         try{
-            if(tasks.runningT ==0){
+            if(tasks.runningT <= 0)
+            {
                 throw new NoSuchFieldException();
             }
             System.out.println("Completed Tasks");
@@ -222,7 +226,7 @@ public class App {
         {
             if (tasks.runningT == 0)
             {
-                throw new NoSuchFieldException();
+                throw new NoSuchFieldException("WARNING: Cannot complete action");
             }
             System.out.println("Enter the file name to save as a txt file:");
             String fileName = input.nextLine();
@@ -341,7 +345,6 @@ public class App {
         int firstc;
         int sechoice;
         int thirchoice;
-
         boolean lcontinue = true;
         boolean locontinue = true;
         boolean continuemore = true;
@@ -354,13 +357,14 @@ public class App {
             try
             {
                 firstc=input.nextInt();
-                input.nextLine();
+                //input.nextLine();
 
                 switch (firstc)
                 {
                     case 1 -> {
+
                         TaskList tasklist = new TaskList();
-                        System.out.println("New List created");
+                        System.out.println("Creating New list");
 
                         while (locontinue)
                         {
@@ -379,11 +383,11 @@ public class App {
                         }
                     }
                     case 2 -> {
-                        TaskList loadedTaskList = new TaskList();
+                        TaskList TaskList = new TaskList();
                         System.out.println("Enter the file name to load: ");
                         String fileName = input.nextLine();
 
-                        loadedTaskList.loadList(fileName);
+                        TaskList.loadList(fileName);
                         System.out.println("Task list has been loaded.");
                         while (continuemore)
                         {
@@ -392,7 +396,7 @@ public class App {
                             {
                                 thirchoice = input.nextInt();
                                 input.nextLine();
-                                continuemore = ListOpMenu(thirchoice, loadedTaskList);
+                                continuemore = ListOpMenu(thirchoice, TaskList);
                             } catch (IllegalArgumentException | InputMismatchException exception)
                             {
                                 System.out.println("WARNING: numbers 1-8 are the only valid choices");
