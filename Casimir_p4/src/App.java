@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class App {
     public static Scanner input =new Scanner(System.in);
+    int index;
 
     public static void main(String[] args)
     {
@@ -101,6 +102,8 @@ public class App {
             }
             System.out.println("Current Tasks");
             System.out.println("-------------------");
+            System.out.println("\n");
+
             displayTasks(tasklist);
             System.out.print("What tasks would you like to remove?");
             int index = input.nextInt();
@@ -108,9 +111,6 @@ public class App {
         }
         catch(InputMismatchException exception){
             System.out.println("WARNING:enter the index of task you want to remove as an integer");
-        }
-        catch(IndexOutOfBoundsException exception){
-            System.out.println("WARNING: You cant remove the task, invalid");
         }
         catch(NoSuchFieldException exception){
             System.out.println("Warning: no tasks available to remove");
@@ -411,4 +411,5 @@ public class App {
             }
         }
     }
+
 }
