@@ -33,11 +33,6 @@ public class App {
         {
             System.out.println("Warning: Invalid due date. Task not created");
         }
-        finally
-        {
-            input.nextLine();
-        }
-
     }
 //------------------------------------------------------------------------------------------------------------
     private static void editTask(TaskList tasklist){
@@ -87,10 +82,6 @@ public class App {
         catch(NoSuchFieldException exception)
         {
             System.out.println("WARNING: There are no tasks to edit");
-        }
-        finally
-        {
-            input.nextLine();
         }
     }
 //------------------------------------------------------------------------------------------------------------
